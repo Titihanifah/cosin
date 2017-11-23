@@ -88,8 +88,7 @@
                                     
                                     <div class="serceoption wow fadeIn" data-wow-duration="1.5s">
                                         <div class="input-group input-group-lg">
-                                            <!--<span class="input-group-addon">www.</span>-->
-                                            <form method="POST">
+                                           <form method="POST">
                                                 {{ sform.hidden_tag() }}
                                                 {{ sform.keyword }}
                                                 {{ sform.search }}
@@ -123,7 +122,7 @@
                     <div class="col-sm-10 col-sm-offset-1">
 						<div class="main_somainsearrce">
 							<div class="head_title text-center wow fadeInDown" data-wow-duration="1s">
-								<h2>Hasil Tabel</h2>
+								<h2>Result</h2>
 								<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor mauris ac nulla interdum, id molestier.</p> -->
 							</div>
 
@@ -138,7 +137,12 @@
 							</div> -->
 
 							<div class="sercelist wow fadeIn" data-wow-duration="2s">
-								<div class="single_dotcom_serce text-center">	
+								<div class="single_dotcom_serce text-center">
+                                    <ul class="list-inline border">
+                                        <li><p>File</p></li>
+                                        <li><p>Distance Similarity</p></li>                                  
+                                        
+                                    </ul>	
                                     {% for v in data%}
                                     {% if v[1] != 0.0 %}
 									<ul class="list-inline border">
@@ -149,12 +153,27 @@
                                     {% endif %}
                                     {% endfor %}
 									
-								   
-                                 </div> 
+                                 </div>
+                                 
+                                 <!--<table class="single_dotcom_serce text-center">  
+                                    <tr>
+                                            <th> File Name </th>
+                                            <th> Silimilarity </th>
+                                    </tr>
+                                    {% for v in data%}
+                                    {% if v[1] != 0.0 %}
+                                    
+                                    <tr class="list-inline border">
+                                        <td><p>{{ v[0] }}</p></td>
+                                        <td><p>{{ v[1] }}</p></td>                                  
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    
+                                   
+                                 </table> -->
                                  
                             </div> <!-- End of sercelist -->
-                            
-
 						</div>
 					</div>
                 </div>
@@ -229,14 +248,13 @@
 
                         <div class="abouts_area">
                             <div class="row">
-                                <div class="col-sm-5">
+                                <div class="col-sm-10">
                                     <div class="single_about wow fadeInLeft" data-wow-duration="1.5s">
-                                        <h3>About Us</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat eget diam sit amet molestie.Curabitur. 
-                                            ut ipsum bibendum tortor lacinia fermentum nec joeıa.Mauris at augue libero. Fusce posuere, sapien nec poır.Uaee augsuada sed mauris in tincidunt...</p>
+                                        <h3>Diskripsi</h3>
+                                        <p> Sistem Search Engine X adalah mesin pencarian yang di desain untuk mencari informasi yang tersimpan di dalam folder text file yang sudah ditentukan. Hasil dari pencarian akan menampilkan data informasi yang berkaitan dengan dokumen file yang ada. Data yang ditampilkan berupa lima jarak kemiripan terdekat dengan dokumen. Pengambilan jarak berdasarkan rumus cosine akan ditampilkan dalam bentuk pie chart, diagram batang,  dan tabel yang sudah terurut. Manfaat dengan adanya pie chart dan diagram batang adalah mempermudah pembacaan informasi sehingga dapat diterima oleh user dengan tepat sasaran. Tujuan dibuatnya sistem search engine x yaitu untuk memudahkan dalam pencarian informasi secara mudah, cepat dan akurat. </p>
                                     </div>
                                 </div>
-                                <div class="col-sm-7">
+                                <!--<div class="col-sm-7">
                                     <div class="single_about_right wow fadeInRight" data-wow-duration="1.5s">
                                         <div class="row">
                                             <div class="col-sm-4">
@@ -292,7 +310,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
