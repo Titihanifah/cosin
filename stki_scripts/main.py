@@ -36,7 +36,7 @@ def main():
 # print main()
 
 
-ef findSim(keyword, path):
+def findSim(keyword, path):
 
     # membuat dictionary articles
     # membaca semua file .txt yang berada di direktori path(text files)

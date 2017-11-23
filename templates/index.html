@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Gost Host One Page Template</title>
+        <title>Articles Search</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -89,7 +89,11 @@
                                     <div class="serceoption wow fadeIn" data-wow-duration="1.5s">
                                         <div class="input-group input-group-lg">
                                             <!--<span class="input-group-addon">www.</span>-->
-                                            <input type="text" class="form-control" style="width:600px" aria-label="Amount (to the nearest dollar)">
+                                            <form method="POST">
+                                                {{ sform.hidden_tag() }}
+                                                {{ sform.keyword }}
+                                                {{ sform.search }}
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -109,25 +113,9 @@
                 </div>
             </div>
         </section><!-- End of Banner Section -->
+     
 
-
-        <section id="register" class="register">
-            <div class="container-fullwidth">
-                <div class="row text-center">
-                    <div class="col-sm-6 col-xs-6 no-padding">
-                        <div class="single_register single_login">
-                            <a href="">Login</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xs-6 no-padding">
-                        <div class="single_register">
-                            <a href="">Register</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+       
 
         <section id="domain" class="domainsearce">
             <div class="container">
@@ -136,10 +124,10 @@
 						<div class="main_somainsearrce">
 							<div class="head_title text-center wow fadeInDown" data-wow-duration="1s">
 								<h2>Would you like to buy a new domain ?</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor mauris ac nulla interdum, id molestier.</p>
+								<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor mauris ac nulla interdum, id molestier.</p> -->
 							</div>
 
-							<div class="serceoption wow fadeIn" data-wow-duration="1.5s">
+							<!-- <div class="serceoption wow fadeIn" data-wow-duration="1.5s">
 								<div class="input-group input-group-lg">
 									<span class="input-group-addon">www.</span>
 									<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -147,28 +135,25 @@
 										<span class="caret"></span> 
 									</span> 
 								</div>
-							</div>
+							</div> -->
 
 							<div class="sercelist wow fadeIn" data-wow-duration="2s">
-								<div class="single_dotcom_serce text-center">
-									
-									<ul class="list-inline">
-										<li><p>.com</p></li>
-										<li><p>1 yer</p></li>
-										<li><p>$9.00 USD</p></li>
-										<li><p>Transfer Price No</p></li>
-									</ul>
-									
-									<ul class="list-inline no-border">
-										<li><p>.net</p></li>
-										<li><p>1 yer</p></li>
-										<li><p>$9.00 USD</p></li>
-										<li><p>Transfer Price No</p></li>
-									</ul>
+								<div class="single_dotcom_serce text-center">									
+                                    {% for v in data%}
+                                    {% if v[1] != 0.0 %}
+									<ul class="list-inline border">
+										<li><p>{{ v[0] }}</p></li>
+										<li><p>{{ v[1] }}</p></li>									
+										
+                                    </ul>
+                                    {% endif %}
+                                    {% endfor %}
 									
 								   
-								 </div>    
-							</div> <!-- End of sercelist -->
+                                 </div> 
+                                 
+                            </div> <!-- End of sercelist -->
+                            
 
 						</div>
 					</div>
@@ -176,146 +161,69 @@
             </div>
         </section>
 
-
+        <section id="register" class="register">
+                <div class="container-fullwidth">
+                    <div class="row text-center">
+                        <div class="col-sm-6 col-xs-6 no-padding">
+                            <div class="single_register single_login">
+                                <a href="">Login</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-6 no-padding">
+                            <div class="single_register">
+                                <a href="">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         <section id="pricingtop" class="pricingtop">
             <div class="overlay">
                 <div class="container">
+                        
+                    
                     <div class="main_pricingtop"></div>
                 </div> 
             </div>
         </section>
 
         <section id="pricing" class="pricing">
+            
             <div class="container">
+                
                 <div class="row">
                     <div class="main_pricing">
 
                         <div class="pricing_content">
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="single_pricing pricing_color_one wow fadeIn" data-wow-duration=".6s">
                                     <div class="pricing_head text-center">
                                        <div class="icon_area p_icon_one">
                                             <i class="fa fa-star"></i>
                                         </div>
-                                        <h3>BASIC PACKAGE</h3>
+                                        <h3>PIE CHART</h3>
                                          <div class="separator"></div>
                                     </div>
-                                    <figure class="single_pricing_figure">
-                                        <ul>
-                                            <li><span class="princing_name">Disk Space (GB)</span> <span class="princing_price princing_price_one">50</span></li>
-                                            <li><span class="princing_name">Subdomains</span> <span class="princing_price princing_price_one">50</span></li>
-                                            <li><span class="princing_name">Transfer (GB)</span> <span class="princing_price princing_price_one">50</span></li>
-                                            <li><span class="princing_name">Data bases</span> <span class="princing_price princing_price_one">1</span></li>
-                                            <li><span class="princing_name">Dashboards</span> <span class="princing_price princing_price_one"></span></li>
-                                            <li><span class="princing_name">Control Panel & FTP</span> <span class="princing_price princing_price_one"></span></li>
-                                            <li><span class="princing_name">Free Support</span> <span class="princing_price princing_price_one"></span></li>
-                                           
-                                        </ul>
-                                        <div class="separator"></div>
+                                    <center><figure class="single_pricing_figure"></center>
+                                            {% for v in data%} 
+                                            {% if v[1] != 0.0 %}	
+                                            <center><div id="piechart"></div></center>
+                                            {% endif %} 
+                                            {% endfor %}
+                                       
                                     </figure>
                                     
-                                    <footer class="pricing_footer text-center">
+                                    <!-- <footer class="pricing_footer text-center">
                                         <h3><span class="dolor">$</span> 20 <span class="month">/Mo </span></h3>
                                         <div class="smallseparator separetor_one"></div>
                                         <a href="">SELECT PLAN</a>
-                                    </footer>
+                                    </footer> -->
                                     
                                 </div>
                             </div>
 
-                            <div class="col-md-3 col-sm-6">
-                                <div class="single_pricing pricing_color_two wow fadeIn" data-wow-duration="1.2s">
-                                    <div class="pricing_head text-center">
-                                        <div class="icon_area p_icon_two">
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <h3>NORMAL PACKAGE</h3>
-                                         <div class="separator"></div>
-                                    </div>
-                                    <figure class="single_pricing_figure">
-                                        <ul>
-                                            <li><span class="princing_name">Disk Space (GB)</span> <span class="princing_price princing_price_two">50</span></li>
-                                            <li><span class="princing_name">Subdomains</span> <span class="princing_price princing_price_two">50</span></li>
-                                            <li><span class="princing_name">Transfer (GB)</span> <span class="princing_price princing_price_two">50</span></li>
-                                            <li><span class="princing_name">Data bases</span> <span class="princing_price princing_price_two">1</span></li>
-                                            <li><span class="princing_name">Dashboards</span> <span class="princing_price princing_price_two"></span></li>
-                                            <li><span class="princing_name">Control Panel & FTP</span> <span class="princing_price princing_price_two"></span></li>
-                                            <li><span class="princing_name">Free Support</span> <span class="princing_price princing_price_two"></span></li>
-                                        </ul>
-                                        <div class="separator"></div>
-                                    </figure>
-                                    
-                                    <footer class="pricing_footer text-center">
-                                        <h3><span class="dolor">$</span> 20 <span class="month">/Mo </span></h3>
-                                        <div class="smallseparator separetor_two"></div>
-                                        <a href="">SELECT PLAN</a>
-                                    </footer>
-                                    
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="single_pricing pricing_color_three wow fadeIn" data-wow-duration="1.8s">
-                                    <div class="pricing_head text-center">
-                                        <div class="icon_area p_icon_three">
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <h3>BIG PACKAGE</h3>
-                                         <div class="separator"></div>
-                                    </div>
-                                    <figure class="single_pricing_figure">
-                                        <ul>
-                                            <li><span class="princing_name">Disk Space (GB)</span> <span class="princing_price princing_price_three">50</span></li>
-                                            <li><span class="princing_name">Subdomains</span> <span class="princing_price princing_price_three">50</span></li>
-                                            <li><span class="princing_name">Transfer (GB)</span> <span class="princing_price princing_price_three">50</span></li>
-                                            <li><span class="princing_name">Data bases</span> <span class="princing_price princing_price_three">1</span></li>
-                                            <li><span class="princing_name">Dashboards</span> <span class="princing_price princing_price_three"></span></li>
-                                            <li><span class="princing_name">Control Panel & FTP</span> <span class="princing_price princing_price_three"></span></li>
-                                            <li><span class="princing_name">Free Support</span> <span class="princing_price princing_price_three"></span></li>
-                                        </ul>  
-                                        <div class="separator"></div>
-                                    </figure>
-                                    
-                                    <footer class="pricing_footer text-center">
-                                        <h3><span class="dolor">$</span> 20 <span class="month">/Mo </span></h3>
-                                        <div class="smallseparator separetor_three"></div>
-                                        <a href="">SELECT PLAN</a>
-                                    </footer>
-                                    
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="single_pricing pricing_color_four wow fadeIn" data-wow-duration="2.3s">
-                                    <div class="pricing_head text-center">
-                                        <div class="icon_area p_icon_four">
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <h3>BIGGEST PACKAGE</h3>
-                                        <div class="separator"></div>
-                                    </div>
-                                   
-                                    <figure class="single_pricing_figure">
-                                        <ul>
-                                           <li><span class="princing_name">Disk Space (GB)</span> <span class="princing_price princing_price_four">50</span></li>
-                                            <li><span class="princing_name">Subdomains</span> <span class="princing_price princing_price_four">50</span></li>
-                                            <li><span class="princing_name">Transfer (GB)</span> <span class="princing_price princing_price_four">50</span></li>
-                                            <li><span class="princing_name">Data bases</span> <span class="princing_price princing_price_four">1</span></li>
-                                            <li><span class="princing_name">Dashboards</span> <span class="princing_price princing_price_four"></span></li>
-                                            <li><span class="princing_name">Control Panel & FTP</span> <span class="princing_price princing_price_four"></span></li>
-                                            <li><span class="princing_name">Free Support</span> <span class="princing_price princing_price_four"></span></li>
-                                        </ul>
-                                        <div class="separator"></div>
-                                    </figure>
-                                    
-                                    <footer class="pricing_footer text-center">
-                                        <h3><span class="dolor">$</span> 20 <span class="month">/Mo </span></h3>
-                                        <div class="smallseparator separetor_four"></div>
-                                        <a href="">SELECT PLAN</a>
-                                    </footer>
-                                </div>
-                            </div>
+                            
 
                         </div><!-- End of pcining section -->
 
@@ -552,7 +460,7 @@
 				
                 
             </div>
-        </section><!-- End of footer3 section -->
+        </section>End of footer3 section
     -->
 		<footer id="coppyrights" class="coppyrights">
 			<div class="container-fluid">
@@ -581,6 +489,35 @@
 
         <script src="{{ url_for('static',filename='js/plugins.js') }}"></script>
         <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+        <script type="text/javascript"> 
+        // Load google charts 
+        google.charts.load('current', {'packages':['corechart']}); 
+        google.charts.setOnLoadCallback(drawChart); 
+        
+        // Draw the chart and set the chart values 
+        function drawChart() { 
+        var data = google.visualization.arrayToDataTable([ 
+        ['Task', 'Hours per Day'], 
+        {% for v in data %} 
+        {% if v[1] != 0.0 %} 
+        ['{{ v[0] }}', {{ v[1] }}], 
+        {% endif %} 
+        {% endfor %} 
+        
+        ]); 
+        
+        
+        var options = {'width':600, 'height':600}; 
+        
+        // Display the chart inside the <div> element with id="piechart" 
+        var chart = new google.visualization.PieChart(document.getElementById('piechart')); 
+        chart.draw(data, options); 
+        } 
+        </script> 
+       
+      
+        
 
     </body>
 </html>
