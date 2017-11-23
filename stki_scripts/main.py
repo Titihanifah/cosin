@@ -36,49 +36,67 @@ def main():
 # print main()
 
 
-def findSim(pathfile, pathcorpus):
-    """
-    mencari jarak/similarity antara suatu file dengan sekumpulan file/corpus dalam folder.
-    :param pathfile: path tempat artikel yg dicari
-    :param pathcorpus: path tempat folder
-    :return: nama file, jarak terdekat
-    """
+ef findSim(keyword, path):
 
-    # this_path = os.path.split(__file__)[0]
-    # pathcorpus = os.path.join(this_path, pathcorpus)
-    # pathfile   = os.path.join(this_path, pathfile)
-    # membaca sekaligus pre-processing semua artikel corpus simpan ke dictionary
+    # membuat dictionary articles
+    # membaca semua file .txt yang berada di direktori path(text files)
+    # kemudian dimasukan kedalam dictionary articles dengan nama item/index(nama dokumen)
     articles = {}
-    for item in os.listdir(pathcorpus):
+    for item in os.listdir(path):
         if item.endswith(".txt"):
-            with open(pathcorpus + "/" + item, 'r') as file:
+            with open(path + item, 'r') as file:
                 articles[item] = w3.prepro_base(file.read())
 
-    # tambahkan artikel yg dicari ke dictionary
-    findname = pathfile.split("/")[-1]
-    try:
-        articles[findname]
-    except:
-        with open(pathfile, 'r') as file:
-            articles[findname] = w3.prepro_base(file.read())
+    # memasukan kata kunci kedalam dictionary dengan nama item/index(keyword_index)
+    # kemudian dimasukan ke dictionary articles dengan value keyword yang dimasukan
+    kata_kunci = 'keyword_index'
+    articles[kata_kunci] = w3.prepro_base(keyword)
 
-    # representasi bow
+    #menyimpan baris pertama dari dokumen dan menyimpannya dalam dictionary
+    isi_doc = {}
+    for isi in os.listdir(path):
+     if isi.endswith(".txt"):
+         with open(path + isi,'r') as file:
+             isi_doc[isi] = file.read()
+
+    # membuat list list_of_bow
+    # yang kemudian dimasukan token-token unik di setiap dokumennya
     list_of_bow = []
     for key, value in articles.items():
         list_token = value.split()
         dic = w4.bow(list_token)
         list_of_bow.append(dic)
 
-    # matrix
+    # membuat matrix tiap-tiap dokumen dengan token unik dari semua dokumen
     matrix_akhir = w4.matrix(list_of_bow)
 
-    # jarak
-    id_file = articles.keys().index(findname)    # index findname dalam articles.keys() = index dalam matrix
-    jarak = {}
+    # mencari id/urutan keyword_index
+    # membuat dictionary presentase untuk semua dokumen
+    id_keyword = articles.keys().index(kata_kunci)
+    presentase = {}
     for key, vektor in zip(articles.keys(), matrix_akhir):
-        if key != findname:
-            jarak[key] = w5.euclidean(matrix_akhir[id_file], vektor)
+        if key != kata_kunci:
+            presentase[key] = round(w5.cosine(matrix_akhir[id_keyword], vektor),2)
 
-    return w4.sortdic(jarak, descending=False)
+    #mencari baris dalam suati dokumen yang relevan dengan keyword
+    baris = {}
+    token_key = w3.prepro_base(keyword).split()
+    for item in os.listdir(path):
+        if item.endswith(".txt"):
+            # baris[item] = ""
+            tmp = [] 
+            doc = open(path + item, 'r').readlines()
+            for word in token_key:
+                for line in doc:
+                    if word in w3.tokenize(w3.prepro_base(line)) and line not in(value for index,value in enumerate(tmp)):
+                        tmp.append(line)      
+            if tmp != [] :
+                #line of keyword
+                lok = ''.join(tmp)
+                baris[item] = lok
+            else :
+                baris[item] = 'kosong'
+
+    return w4.sortdic(presentase, isi_doc, baris, descending=True)
 
 # print findSim('./text files/ot_2.txt','./text files')
