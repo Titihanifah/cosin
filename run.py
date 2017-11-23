@@ -13,7 +13,7 @@ class SearchTask(FlaskForm):
 
 def searchTask(form):
     keyword = form.keyword.data
-    path_corpus = "./text files"
+    path_corpus = "./text files/"
     res = findSim(keyword, path_corpus)
     # res = {"title 1":0.3, "title 2":0.5, "title 3":1.3} # change the value here
     return res

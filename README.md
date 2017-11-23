@@ -12,4 +12,5 @@ python run.py
 ```
 
 ### Acknowledgments
-* https://github.com/rianrajagede/flask-search.git# aplikasi pembanding kalimat dengan dokumen
+
+aplikasi pembanding kalimat dengan dokumen

@@ -18,7 +18,7 @@ def bow(list_token):
     return bow_dict
 
 
-def sortdic(dic, descending=True, n=None):
+def sortdic(dic, isi, baris, descending=True, n=None):
     """
     fungsi untuk mengurutkan dictionary hasil representasi bag of words
     :param dic: dictionary key,value = string,int
@@ -32,10 +32,13 @@ def sortdic(dic, descending=True, n=None):
     # python 2
     key = dic.keys()
     val = dic.values()
+    isi = isi.values()
+    baris = baris.values()
 
     key_ordered = [x for _, x in sorted(zip(val, key), reverse=descending)][:n]
-    val_ordered = sorted(val, reverse=descending)[:n]
-
+    isi_ordered =  [x for _, x in sorted(zip(val, isi), reverse=descending)][:n]
+    baris_ordered =  [x for _, x in sorted(zip(val, baris), reverse=descending)][:n]
+    val_ordered = sorted(val, reverse=descending)[n:5]
     ## python 3
     # return list(zip(key_ordered,val_ordered))
     # python 2
